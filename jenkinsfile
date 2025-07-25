@@ -13,22 +13,33 @@ pipeline{
              stage('Init'){
               steps{  
                 sh """
-                    ls -ltr
-                    cd 01-vpc
+                  cd 01-vpc
+                  terrafrom init -reconfigure
 
                 """
               }
              }  
             stage('Plan'){
               steps{  
-                sh 'echo this is Build'
+                sh '''
+                  cd 01-vpc
+                  terraform plan
+                '''
               }
            
             }
         
             stage('Deploy'){
+
+                input {
+                message "Should we continue?"
+                ok "Yes, Continue."
+                }
                 steps{
-                  sh 'echo this is Deploy'  
+                 sh '''
+                  cd 01-vpc
+                  terraform apply auto-approve
+                ''' 
                 }
                 
             }
