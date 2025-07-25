@@ -30,6 +30,12 @@ pipeline{
                 steps{
                   sh 'echo this is Deploy'  
                 }
+                
+            }
+            post{
+              always{
+                  deleteDir()
+              }
             }
             
 
