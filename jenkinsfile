@@ -14,7 +14,7 @@ pipeline{
               steps{  
                 sh """
                   cd 01-vpc
-                  terrafrom init -reconfigure
+                  terraform init -reconfigure
 
                 """
               }
@@ -38,7 +38,7 @@ pipeline{
                 steps{
                  sh '''
                   cd 01-vpc
-                  terraform apply auto-approve
+                  terraform apply -auto-approve
                 ''' 
                 }
                 
