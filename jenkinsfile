@@ -50,11 +50,6 @@ pipeline{
             }
 
             stage('Destroy'){
-
-                input {
-                  message "Should we continue?"
-                  ok "Yes, Continue."
-                }
                 steps{
                  sh '''
                   cd 01-vpc
@@ -71,4 +66,5 @@ pipeline{
     }
     
         }
+}
 
