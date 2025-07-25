@@ -23,12 +23,7 @@ pipeline{
               }
            
             }
-            stage('Deploy'){
-                steps{
-                  sh 'echo this is teast'
-                  
-                }
-            }
+        
             stage('Deploy'){
                 steps{
                   sh 'echo this is Deploy'  
