@@ -13,7 +13,7 @@ pipeline{
               steps{  
                 sh """
                     ls -ltr
-                        
+
                 """
               }
 
@@ -70,6 +70,6 @@ pipeline{
              
     }
     
-     
+        }
 
 }
