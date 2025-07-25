@@ -7,9 +7,9 @@ terraform {
   }
   backend"s3"{
     bucket="dev-daw9"
-    key="exp-dev-vpc"
+     key= "expense-dev-vpc/terraform.tfstate"
     region="us-east-1"
-    dynamodb_table="dev-daw9"   
+    dynamodb_table="daws83s"
 }
 }
 provider "aws" {
