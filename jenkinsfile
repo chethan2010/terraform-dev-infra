@@ -1,0 +1,75 @@
+pipeline{
+    agent{
+      label 'AGENT-1'
+    }
+    options{
+
+        timeout(time:2, unit: 'MINUTES')
+        disableConcurrentBuilds()
+    }
+    
+        stages{
+             stage('Init'){
+              steps{  
+                sh """
+                    ls -ltr
+                        
+                """
+              }
+
+            stage('Plan'){
+              steps{  
+                sh 'echo this is Build'
+              }
+           
+            }
+            stage('Deploy'){
+                steps{
+                  sh 'echo this is teast'
+                  sh  'sleep 10'  
+                }
+            }
+            stage('Deploy'){
+                steps{
+                  sh 'echo this is Deploy'  
+                }
+            }
+            stage('pars') {
+            steps {
+                echo "Hello ${params.PERSON}"
+
+                echo "Biography: ${params.BIOGRAPHY}"
+
+                echo "Toggle: ${params.TOGGLE}"
+
+                echo "Choice: ${params.CHOICE}"
+
+                echo "Password: ${params.PASSWORD}"
+
+                echo 'trigger test'
+
+                // error 'some failure'
+            }
+
+            }
+
+    }
+    
+     post{
+          always{
+            echo 'Hello says always again'
+          }
+          success{
+            echo 'i will run when pipline is success'
+          }
+          failure{
+            echo 'i will run when pipline is failure'
+          }
+
+       
+             
+    }
+    
+     
+
+}

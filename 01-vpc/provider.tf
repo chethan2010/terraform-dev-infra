@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend"s3"{
-    bucket="dev-daw93-bucket"
+    bucket="dev-daw9"
     key="exp-dev-vpc"
     region="us-east-1"
-    dynamodb_table="daws93-locking"   
+    dynamodb_table="dev-daw9"   
 }
 }
 provider "aws" {

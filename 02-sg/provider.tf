@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend"s3"{
-    bucket="dev-daw93-bucket"
+    bucket="dev-daw93"
     key="exp-expense-sg"
     region="us-east-1"
     dynamodb_table="daws93-locking"   
