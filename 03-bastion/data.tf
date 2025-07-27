@@ -9,7 +9,8 @@ data "aws_ssm_parameter" "bastion_sg_id" {
 resource "aws_ssm_parameter" "public_subnet_ids" {
   name        = "/expense/dev/public_subnet_ids"
   type        = "StringList"
-  value       = join(",", module.vpc.public_subnet_ids) # or hardcoded list.
+  value       = local.public_subnet_id
+  # join(",", module.vpc.public_subnet_ids) # or hardcoded list.
 #   overwrite   = true  # Deprecated, so remove if you're using new AWS provider
  }
 
