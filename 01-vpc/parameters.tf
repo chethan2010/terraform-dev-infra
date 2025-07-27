@@ -6,7 +6,7 @@ resource "aws_ssm_parameter" "vpc_id" {
 resource "aws_ssm_parameter" "public_subnet_ids" {
   name  = "/network/public_subnets"
   type  = "StringList"
-  value = join(",", module.vpc.public_subnets)
+  value = join(",", module.vpc.public_subnet_ids)
 }
   
   # converting list to string list
@@ -17,7 +17,7 @@ resource "aws_ssm_parameter" "public_subnet_ids" {
 resource "aws_ssm_parameter" "private_subnet_ids" {
   name  = "/network/private_subnets"
   type  = "StringList"
-  value = join(",", module.vpc.private_subnets)
+  value = join(",", module.vpc.private_subnet_ids)
 }
 
 resource "aws_ssm_parameter" "db_subnet_group_name" {
