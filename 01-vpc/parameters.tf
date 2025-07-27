@@ -4,20 +4,20 @@ resource "aws_ssm_parameter" "vpc_id" {
   value = module.vpc.vpc_id
 }
 resource "aws_ssm_parameter" "public_subnet_ids" {
-  name  = "/${var.Project_name}/${var.environment}/public_subnet_ids"
+  name  = "/network/public_subnets"
   type  = "StringList"
-  value =join("," ,module.vpc.public_subnet_cidrs)
-  
+  value = join(",", module.vpc.public_subnets)
+}
   
   # converting list to string list
-} 
+
 # join("," ,module.vpc.public_subnet_ids) 
 # #["id1","id2"] terraform format
 # # id1, id2 -> AWS SSM format
 resource "aws_ssm_parameter" "private_subnet_ids" {
-  name  = "/${var.Project_name}/${var.environment}/private_subnet_ids"
+  name  = "/network/private_subnets"
   type  = "StringList"
-  value = join(",",module.vpc.private_subnet_cidrs) # converting list to string list
+  value = join(",", module.vpc.private_subnets)
 }
 
 resource "aws_ssm_parameter" "db_subnet_group_name" {
