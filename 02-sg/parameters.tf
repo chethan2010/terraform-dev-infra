@@ -2,6 +2,7 @@ resource "aws_ssm_parameter" "db_sg_id" {
   name  = "/${var.project_name}/${var.environment}/db_sg_id"
   type  = "String"
   value = module.db.sg_id
+  
 }
 
 resource "aws_ssm_parameter" "backend_sg_id" {
