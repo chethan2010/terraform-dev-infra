@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend"s3"{
-    bucket="dev-daw93-bucket"
-    key="exp-expense-baston"
+    bucket="dev-daw9"
+     key= "expense-dev-bastion/terraform.tfstate"
     region="us-east-1"
-    dynamodb_table="daws93-locking"   
+    dynamodb_table="daws83s"
 }
 }
 provider "aws" {
