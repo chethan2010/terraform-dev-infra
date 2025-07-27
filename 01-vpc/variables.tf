@@ -32,4 +32,5 @@ variable "common_tags" {
 
 variable "is_peering_required" {
     default = true
+  
 }
