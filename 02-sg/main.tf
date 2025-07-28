@@ -39,6 +39,16 @@ module "frontend" {
   sg_name = "frontend"
 }
 
+module "jenkins_sg_ids" {
+  source = "../../terraform-aws-securityGroups"
+  project_name = var.project_name
+  environment = var.environment
+  sg_description = "SG for Frontend Instances"
+  vpc_id = data.aws_ssm_parameter.vpc_id.value
+  common_tags = var.common_tags
+  sg_name = "jenkins"
+}
+
 module "web_alb" {
   source = "../../terraform-aws-securityGroups"
   project_name = var.project_name
@@ -69,6 +79,8 @@ module "vpn" {
   sg_name = "vpn"
   ingress_rules = var.vpn_sg_rules
 }
+
+
 
 # DB is accepting connections from backend
 resource "aws_security_group_rule" "db_backend" {
@@ -226,16 +238,24 @@ resource "aws_security_group_rule" "backend_default_vpc" {
   security_group_id = module.backend.sg_id
 }
 
-#added as part of Jenkins CICD
-resource "aws_security_group_rule" "frontend_default_vpc" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks = ["172.31.0.0/16"]
-  security_group_id = module.frontend.sg_id
-}
+#added as part of Jenkins CICDresource "aws_security_group_rule" "ssh_jenkins-cicd" {
+# resource "aws_security_group_rule" "ssh_jenkins-cicd" {
+#   type              = "ingress"
+#   from_port         = 22
+#   to_port           = 22
+#   protocol          = "tcp"
+#   cidr_blocks       = ["0.0.0.0/0"]
+#   security_group_id = module.jenkins_sg_ids.sg_id  
+# }
 
+# resource "aws_security_group_rule" "jenkins_default_vpc" {
+#   type              = "ingress"
+#   from_port         = 8080
+#   to_port           = 8080
+#   protocol          = "tcp"
+#   cidr_blocks       = ["0.0.0.0/0"]
+#   security_group_id = module.jenkins_sg_ids.sg_id  
+# }
 # not required, we can connect from VPN
 # resource "aws_security_group_rule" "frontend_public" {
 #   type              = "ingress"

@@ -41,3 +41,8 @@ resource "aws_ssm_parameter" "web_alb_sg_id" {
   value = module.web_alb.sg_id
 }
 
+# resource "aws_ssm_parameter" "jenkins_sg_ids" {
+#   name  = "/${var.project_name}/${var.environment}/jenkins_sg_ids"
+#   type  = "String"
+#   value = module.jenkins.jenkins_sg_ids
+# }
