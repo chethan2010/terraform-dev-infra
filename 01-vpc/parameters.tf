@@ -3,16 +3,16 @@ resource "aws_ssm_parameter" "vpc_id" {
   type  = "String"
   value = module.vpc.vpc_id
 }
-resource "aws_ssm_parameter" "public_subnet_ids" {
+resource "aws_ssm_parameter" "public_subnet_id" {
   name  = "/network/public_subnets"
   type  = "StringList"
   value = join(",", module.vpc.public_subnet_ids)
 }
 
-resource "aws_ssm_parameter" "private_subnet_ids" {
+resource "aws_ssm_parameter" "private_subnet_id" {
   name  = "/network/private_subnets"
   type  = "StringList"
-  value = join(",", module.vpc.public_subnet_ids)
+  value = join(",", module.vpc.private_subnet_ids)
 }
 resource "aws_ssm_parameter" "db_subnet_group_name" {
   name  = "/${var.Project_name}/${var.environment}/db_subnet_group_name"
